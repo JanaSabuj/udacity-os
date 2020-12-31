@@ -3,7 +3,7 @@ using namespace std;
 
 // middle-square-method
 int digits = 4;
-int seed = 1234;
+int seed = 5678;
 int msprng_rand(){
     int sq = seed * seed;
     string str = to_string(sq);
@@ -18,8 +18,17 @@ int msprng_rand(){
 
 int main(){
     // Middle Square method to generate prng
-    for(int i = 0; i < 10; i++){
-        cout << msprng_rand() << " ";
+    map<int,int> mp;
+    for(int i = 0; i < 100000; i++){
+        int val = msprng_rand();
+        if(mp[val]){
+            cout << "PRNG starts repeating at " << val << endl;
+            break;
+        }
+        else{
+            cout << val << " ";
+            mp[val]++;
+        }
     }
     cout<<endl;
 
